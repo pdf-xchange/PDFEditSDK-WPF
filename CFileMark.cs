@@ -11,20 +11,20 @@ namespace WpfSimpleApp
 {
 	class CFileMark
 	{
-		private PXC_Inst m_Inst = null;
-		private IPXC_Document doc = null;
+		private IPXV_Inst Inst = null;
+		private IPXC_Document Doc = null;
 
-		public CFileMark(PXC_Inst inst, IPXC_Document doc)
+		public CFileMark(IPXV_Inst inst, IPXC_Document doc)
 		{
-			m_Inst = inst;
-			this.doc = doc;
+			this.Inst = inst;
+			this.Doc = doc;
 		}
 
 		public void SaveFile(string fileName)
 		{
 			try
 			{
-				doc.WriteToFile(fileName, null, 0);
+				Doc.WriteToFile(fileName, null, 0);
 				System.Diagnostics.Process openProcess = new System.Diagnostics.Process();
 				openProcess.StartInfo.FileName = fileName;
 				openProcess.StartInfo.UseShellExecute = true;
@@ -42,7 +42,22 @@ namespace WpfSimpleApp
 
 		public void Run()
 		{
-			//doc.;
+			
+			int nID = Inst.Str2ID(" op.search", false);
+			PDFXEdit.IOperation pOp = Inst.CreateOp(nID);
+			PDFXEdit.ICabNode input = pOp.Params.Root["Input"];
+			input.v = Doc;
+			PDFXEdit.ICabNode options = pOp.Params.Root["Options"];
+
+
+			options["StartPage"].v = 0;
+			options["StopPage"].v = Doc.Pages.Count;
+			int nFlags = (int)PXV_SearchFlags.PXV_SearchFlag_IncludeBookmarks;
+			options["Flags"].v = nFlags;
+			PDFXEdit.ICabNode arrAnd = options["AND"];
+			arrAnd.Add().v = "Find";
+			options["Callback"].v = new SearchCbBridge();
+			pOp.Do();
 		}
 
 	}

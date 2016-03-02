@@ -301,7 +301,7 @@ namespace WpfSimpleApp
 		public CFileMark OpenFile(string fileName)
 		{
 			var doc = g_Inst.OpenDocumentFromFile(fileName, null);
-			return new CFileMark(g_Inst, doc);
+			return new CFileMark(g_VInst, doc);
 		}
 	}
 
