@@ -43,19 +43,17 @@ namespace WpfSimpleApp
 		public void Run()
 		{
 			
-			int nID = Inst.Str2ID(" op.search", false);
+			int nID = Inst.Str2ID("op.search", false);
 			PDFXEdit.IOperation pOp = Inst.CreateOp(nID);
 			PDFXEdit.ICabNode input = pOp.Params.Root["Input"];
-			input.v = Doc;
+			input.Add().v = Doc;
 			PDFXEdit.ICabNode options = pOp.Params.Root["Options"];
-
-
 			options["StartPage"].v = 0;
 			options["StopPage"].v = Doc.Pages.Count;
 			int nFlags = (int)PXV_SearchFlags.PXV_SearchFlag_IncludeBookmarks;
 			options["Flags"].v = nFlags;
 			PDFXEdit.ICabNode arrAnd = options["AND"];
-			arrAnd.Add().v = "Find";
+			arrAnd.Add().v = "the";
 			options["Callback"].v = new SearchCbBridge();
 			pOp.Do();
 		}
