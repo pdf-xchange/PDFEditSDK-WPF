@@ -17,9 +17,9 @@ namespace WpfSimpleApp
 		public string mySDKKey = "";
 		public PXC_Rect letterSize = CreateRect(0.0, 0.0, I2P(8.5), I2P(11.0));
 
-		public Color clrBlack = Color.FromRgb(0, 0, 0);
-		public Color clrWhite = Color.FromRgb(255, 255, 255);
-		public Color clrKhaki = Color.FromRgb(107, 183, 189);
+		public System.Windows.Media.Color clrBlack = System.Windows.Media.Color.FromRgb(0, 0, 0);
+		public System.Windows.Media.Color clrWhite = System.Windows.Media.Color.FromRgb(255, 255, 255);
+		public System.Windows.Media.Color clrKhaki = System.Windows.Media.Color.FromRgb(107, 183, 189);
 		public uint clrLtGray = RGB(232, 232, 232);
 
 		public PXV_Inst g_VInst = new PXV_Inst();
@@ -66,7 +66,7 @@ namespace WpfSimpleApp
 		public void InitializeSDK()
 		{
 			g_VInst.Init(null, mySDKKey);
-			g_Inst = g_VInst.GetExtension("PXC");
+			g_Inst = (PXC_Inst)g_VInst.GetExtension("PXC");
 			//          IPXS_Inst g_COS = g_VInst.GetExtension("PXS");
 			//          IIXC_Inst g_ImgCore = g_VInst.GetExtension("IXC");
 			//          IAUX_Inst g_AUX = g_VInst.GetExtension("AUX");

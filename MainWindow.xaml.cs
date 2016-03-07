@@ -28,6 +28,8 @@ namespace WpfSimpleApp
 		{
 			smp.InitializeSDK();
 			InitializeComponent();
+			windowsFormsHost.Child = new UserControl1();
+			((UserControl1)windowsFormsHost.Child).axPXV_Control1.OpenDocWithDlg();
 		}
 		private void Window_Initialized(object sender, EventArgs e)
 		{
