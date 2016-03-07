@@ -7,7 +7,7 @@ To make the sample working do the following steps:
 
 2) Try to build this solution so that the Build directory will be generated.
 
-3) Copy the PDFXEditCore.x86.dll from where the PDF-XChange Editor SDK was installed into the project Build directory (i.e. bin where the exe file lies).
+3) Copy the PDFXEditCore.x86.dll and Resources.dat from where the PDF-XChange Editor SDK was installed into the project Build directory (i.e. bin where the exe file lies).
 
 4) Launch the application again
 
